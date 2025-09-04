@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <main>
+      <button id="button">add color</button>
+      <section id="section">
+        Cascading Style Sheets (CSS) is a
+        <b>
+          <em>
+            <a
+              href="https://developer.mozilla.org/en-US/docs/Web/API/StyleSheet"
+              target="_blank"
+              >stylesheet</a
+            >
+          </em>
+        </b>
+        language used to describe the presentation of a document written in HTML
+        or XML (including XML dialects such as SVG, MathML or XHTML). CSS
+        describes how elements should be rendered on screen, on paper, in
+        speech, or on other media.
+      </section>
+    </main>
+    <script>
+      const section = document.getElementById("section");
+      const button = document.getElementById("button");
+      section.style.background = "red";
+      section.style.fontSize = "3rem";
+
+      button.addEventListener("click", (e) => {
+        section.style.display = "none"
+      });
+    </script>
+  </body>
+</html>
