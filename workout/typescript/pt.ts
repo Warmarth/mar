@@ -1,36 +1,3 @@
-function rollDice() {
-  return Math.floor(Math.random() * 6) + 1;
-}
-function getAbility() {
-  const ability = Array.from({ length: 4 }, rollDice);
-  ability.sort((a, b) => a - b);
-  return ability
-    .slice(1)
-    .reduce((value, accumulator) => accumulator + value, 0);
-}
-
-const getModifier = (score: number) => {
-  return Math.floor((score - 10) / 2);
-};
-
-function getCharacter() {
-  const abilities = {
-    strength: getAbility(),
-    dexterity: getAbility(),
-    constitution: getAbility(),
-    intelligence: getAbility(),
-    wisdom: getAbility(),
-    charisma: getAbility(),
-  };
-  const constitutionModifier = getModifier(abilities.constitution);
-  return {
-    abilities,
-    hitpionts: 10 + constitutionModifier,
-  };
-}
-
-console.log(getCharacter());
-
 const order = [];
 type Menu = {
   id: number;
@@ -45,8 +12,8 @@ const menu: Menu[] = [
     price: 20,
   },
   {
-    id: 4,
-    name: "four",
+    id: 2,
+    name: "two",
     price: 20,
   },
   {
@@ -55,8 +22,8 @@ const menu: Menu[] = [
     price: 20,
   },
   {
-    id: 2,
-    name: "two",
+    id: 4,
+    name: "four",
     price: 20,
   },
 ];
@@ -84,7 +51,7 @@ function findOrder(identifier: identity): Menu | undefined {
 type User = {
   id: number;
   name: string;
-  role: "member" | "admin" | "contributor" | "auditor";
+  role: "member" | "admin" | "contributor" | "auditor" | "cobby";
 };
 
 const users: User[] = [
@@ -94,8 +61,8 @@ const users: User[] = [
     role: "contributor",
   },
   {
-    id: 4,
-    name: "four",
+    id: 2,
+    name: "two",
     role: "admin",
   },
   {
@@ -104,15 +71,19 @@ const users: User[] = [
     role: "auditor",
   },
   {
-    id: 2,
-    name: "two",
+    id: 4,
+    name: "four",
     role: "member",
   },
 ];
 
-const updateRole = (id: number, updater: string) => {
-  const founduser = users.find((user) => user.id === id);
-  if (founduser?.id === id) {
-    const update = Object.assign(founduser, updater);
+const updateRole = (id: number, updater: Partial<User>): void => {
+  const founduser = users.find((u) => u.id === id);
+  if (founduser) {
+    Object.assign(founduser, updater);
   }
 };
+
+updateRole(4, { role: "cobby" });
+updateRole(2, { name: "auditor" });
+console.log(users);
